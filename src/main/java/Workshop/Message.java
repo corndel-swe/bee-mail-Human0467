@@ -11,9 +11,9 @@ public class Message {
     private Boolean hasBeenDelivered = false;
     private Boolean hasBeenRead = false;
 
-    public Message(String id, ZonedDateTime creationTime, String content, User from, User to) {
+    public Message(String content, User from, User to) {
         this.id = id;
-        this.creationTime = creationTime;
+        this.creationTime = ZonedDateTime.now();
         this.content = content;
         this.from = from;
         this.to = to;

@@ -12,13 +12,32 @@ public abstract class User {
     }
 
     void login(App app){
+        app.addUser(this);
         this.app = app;
     };
 
-    Message sendMessage(String recipientId, String content){};
+    void sendMessage(String recipientId, String content){
+        app.createMessage();
+        app.deliverMessage(this.id, recipientId, content);
+    };
 
     Message[] receiveMessage(Message message){};
 
     Message[] readMessage(int idx){};
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }
