@@ -1,12 +1,12 @@
 package Workshop;
 
 public abstract class User {
-    private String id;
-    private String username;
+    protected String id;
+    protected String username;
     private Message[] inbox;
     private App app;
 
-    private User(String id, String username){
+    public User(String id, String username){
         this.id = id;
         this.username = username;
     }
