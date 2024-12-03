@@ -1,6 +1,7 @@
 package Workshop;
 
 import java.time.ZonedDateTime;
+import java.util.UUID;
 
 public class Message {
     private final String id;
@@ -12,7 +13,7 @@ public class Message {
     private Boolean hasBeenRead = false;
 
     public Message(String content, User from, User to) {
-        this.id = id;
+        this.id = UUID.randomUUID().toString();
         this.creationTime = ZonedDateTime.now();
         this.content = content;
         this.from = from;

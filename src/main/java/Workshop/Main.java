@@ -12,7 +12,7 @@ public class Main {
         alice.login(app);
         bob.login(app);
 
-
         alice.sendMessage("102", "hello bob");
+        bob.readMessage(0);
     }
 }

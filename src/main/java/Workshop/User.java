@@ -1,9 +1,12 @@
 package Workshop;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class User {
     protected String id;
     protected String username;
-    private Message[] inbox;
+    private List<Message> inbox = new ArrayList<>();
     private App app;
 
     public User(String id, String username){
@@ -17,13 +20,22 @@ public abstract class User {
     };
 
     void sendMessage(String recipientId, String content){
-        app.createMessage();
-        app.deliverMessage(this.id, recipientId, content);
+        app.deliverMessage(this, recipientId, content);
     };
 
-    Message[] receiveMessage(Message message){};
+    void receiveMessage(Message message){
+        inbox.add(message);
+    };
 
-    Message[] readMessage(int idx){};
+    void readMessage(int idx){
+        if(idx < inbox.size() && idx > - 1) {
+            Message message = inbox.get(idx);
+            System.out.println(message.toString());
+        } else {
+            System.out.println("Invalid message id.");
+        }
+
+    };
 
     public String getId() {
         return id;

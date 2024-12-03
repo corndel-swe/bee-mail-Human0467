@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public class App implements Mediator {
 
-    private List<User> users;
+    private final List<User> users;
 
     private static App instance;
 
@@ -29,9 +29,8 @@ public class App implements Mediator {
     }
 
     @Override
-    public User addUser(User user) {
+    public void addUser(User user) {
         users.add(user);
-        return user;
     }
 
     @Override
@@ -40,14 +39,24 @@ public class App implements Mediator {
     }
 
     @Override
+    public boolean deliverMessage(User sender, String recipientId, String content) {
+        User recipient = findUser(recipientId).orElse(null);
+        Message message = null;
+
+        if(sender != null && recipient != null){
+            message = new Message(content, sender, recipient);
+            recipient.receiveMessage(message);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    @Override
     public Optional<Message> createMessage(String id, ZonedDateTime creationTime,
                                            String content, User from, User to) {
         return Optional.of(new Message(content, from, to));
-    }
-
-    @Override
-    public Message deliverMessage(String senderId, String recipientId, String content) {
-        return null;
     }
 
     @Override
