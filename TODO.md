@@ -32,7 +32,7 @@ classDiagram
   }
 ```
 
-- `users` is a collection of all users who have logged into the app
+- `users` is a collection of all users who have logged into the messengerApp
 
 - `addUser()` handles adding a new user to the `users` collection
 
@@ -50,8 +50,8 @@ classDiagram
     -string id
     -string username
     -Message[] inbox
-    -App app
-    +login(app: App)
+    -App messengerApp
+    +login(messengerApp: App)
     +sendMessage(recipientId: str, content: str)
     +receiveMessage(message: Message)
     +readMessage(idx: int)
@@ -64,9 +64,9 @@ classDiagram
 
 - `inbox` is a list of messages the user has received
 
-- `app` is the instance of `App` the user is logged into
+- `messengerApp` is the instance of `App` the user is logged into
 
-- `login(app)` adds the user to `app.users` and also sets `user.app` to `app`
+- `login(messengerApp)` adds the user to `messengerApp.users` and also sets `user.messengerApp` to `messengerApp`
 
 - `sendMessage()` creates a new message and adds it to the `messages` array of
   the recipient user
@@ -124,7 +124,7 @@ sequenceDiagram
     participant Message
 
     User ->> App: login()
-    App -->> User: set app
+    App -->> User: set messengerApp
     App ->> App: add user to users
 
     User ->> App: sendMessage()
@@ -147,7 +147,7 @@ definitely worth testing:
 
 - Users, Messages and App can be created with the correct properties
 
-- Users can log in to the app
+- Users can log in to the messengerApp
 
 - User 1 can send a message to User 2
 
