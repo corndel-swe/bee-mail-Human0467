@@ -7,6 +7,6 @@ public interface Mediator {
     void addToLoggedInUsers(User user);
     Optional<User> findUserById(String userId);
 
-    Optional<Message> createMessage(String content, User from, User to);
+    Optional<BasicMessage> createMessage(String content, User from, User to);
     void deliverMessage(User sender, String recipientId, String content);
 }

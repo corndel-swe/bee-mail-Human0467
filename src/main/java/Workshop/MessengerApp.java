@@ -35,15 +35,15 @@ public class MessengerApp implements Mediator {
         User recipient = this.findUserById(recipientId).orElse(null);
 
         if(sender != null && recipient != null) {
-            Message message = createMessage(content, sender, recipient).get();
+            BasicMessage message = createMessage(content, sender, recipient).get();
             recipient.receiveMessage(message);
             message.markDelivered();
         }
     }
 
     @Override
-    public Optional<Message> createMessage(String content, User from, User to) {
-        return Optional.of(new Message(content, from, to));
+    public Optional<BasicMessage> createMessage(String content, User from, User to) {
+        return Optional.of(new BasicMessage(content, from, to));
     }
 
 }
